@@ -12,5 +12,5 @@ lib%$(if $(TIERED),-tiered)$(if $(PARALLEL),-parallelgc).so: %.class
 
 .PHONY: run-%
 run-%: $(if $(AOT),lib%$(if $(TIERED),-tiered)$(if $(PARALLEL),-parallelgc).so) %.class
-	java $(if $(AOT),-XX:+UnlockExperimentalVMOptions -XX:AOTLibrary=./$<) $(if $(PARALLEL),-XX:+UseParallelGC) $(JVMARGS) $*
+	java $(if $(AOT),-XX:+UnlockExperimentalVMOptions -XX:AOTLibrary=./$<) $(if $(PARALLEL),-XX:+UseParallelGC) $(JVMARGS) $* | grep "^\|$*" --color='always'
 

@@ -23,4 +23,4 @@
 
 .PHONY: run-%
 run-%: %.jar $(if $(APPCDS),%.jsa)
-	java -Xshare:$(if $(CDS),on,off) $(if $(APPCDS),-XX:SharedArchiveFile=$*.jsa) $(if $(DYNCDS),-XX:ArchiveClassesAtExit=$*.jsa) $(JVMARGS) -jar $< $*
+	java -Xshare:$(if $(CDS),on,off) $(if $(APPCDS),-XX:SharedArchiveFile=$*.jsa) $(if $(DYNCDS),-XX:ArchiveClassesAtExit=$*.jsa) $(JVMARGS) -jar $< $* | grep "^\|$*" --color='always'
